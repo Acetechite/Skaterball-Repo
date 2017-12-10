@@ -4,23 +4,20 @@ using UnityEngine;
 
 public class CameraController : MonoBehaviour {
 
-	public GameObject kamera;  // Assign the object that spins in x,y,z
-	public Quaternion rotacja = Quaternion.identity;
+    public Transform p1;
+    public Transform p2;
 
-	private Rigidbody rb;
+    private Vector3 direction;
 
 
 	void Start(){
-		rb = kamera.GetComponent<Rigidbody> ();
 	
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		transform.LookAt (kamera.transform);
-		//transform.position = transform.TransformDirection (rb.velocity);
-		//rotacja.eulerAngles = new Vector3 (transform.rotation.eulerAngles.x, kamera.transform.rotation.eulerAngles.x, transform.rotation.eulerAngles.x);
-		//transform.rotation = rotacja;
+        direction = p2.position - p1.position;
+        transform.rotation = Quaternion.LookRotation(direction);
 	}
 }
 
